@@ -13,4 +13,22 @@ import java.util.ArrayList;
  */
 public class Layer extends ArrayList<Neuron> {
     
+    private double[] outputs;
+    
+    public void process(double[] inputs)
+    {
+        this.outputs = new double[this.size()];
+        int i_outputs = 0;
+        for (Neuron n : this)
+        {
+            n.process(inputs);
+            this.outputs[i_outputs++] = n.getOutput();
+        }
+    }
+    
+    public double[] getOutputs()
+    {
+        return this.outputs;
+    }
+    
 }

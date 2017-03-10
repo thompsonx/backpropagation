@@ -6,6 +6,7 @@
 package backpropagation.algorithm;
 
 import backpropagation.data.BackpropagationNeuronNet;
+import backpropagation.data.TrainSetElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,20 @@ public class Network {
             for (int i = 0; i < netdata.getNeuronInLayersCount()[i_input]; i++)
                 l.add(new Neuron(inputsPerLayer[i_input]));
             i_input++;
+        }
+    }
+    
+    public void doBackPropagation()
+    {
+        // Forward propagation
+        for (TrainSetElement tse : this.netdata.getTrainingSet())
+        {
+            double[] inputs = tse.getInputs();
+            for (Layer l : this.network)
+            {
+                l.process(inputs);
+                inputs = l.getOutputs();
+            }
         }
     }
     
