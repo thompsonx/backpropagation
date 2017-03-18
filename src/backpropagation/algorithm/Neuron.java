@@ -14,18 +14,38 @@ import java.util.Random;
 public class Neuron {
     
     private double[] weights;
-    private double output;
+    private double lastY;
+    private double lastDelta;
+    private double[] lastInputs;
+    private boolean isOutput;
+    private double lrate;
+    private double expectedOutput;
     
-    public static double LAMBDA = 5000;
+    public static double LAMBDA = 0.7;
     
-    public Neuron(int numOfInputs)
+    public Neuron(int numOfInputs, double lrate)
     {
-        this.weights = new double[numOfInputs];
+        this.isOutput = false;
+        this.lrate = lrate;
+        this.weights = new double[numOfInputs + 1];
         Random generator = new Random();
-        for (int i = 0; i < numOfInputs; i++)
+        for (int i = 0; i < (numOfInputs + 1); i++)
         {
             this.weights[i] = generator.nextDouble();
         }
+    }
+
+    public void setExpectedOutput(double expectedOutput) {
+        this.expectedOutput = expectedOutput;
+    }
+
+    public double getDelta() {
+        return lastDelta;
+    }
+    
+    public void markAsOutput()
+    {
+        this.isOutput = true;
     }
     
     public double getWeight(int index)
@@ -35,21 +55,48 @@ public class Neuron {
         return this.weights[index];
     }
     
-    public double process(double[] inputs)
+    public double computeY(double[] inputs)
     {
-        double z = 0;
-        for (int i = 0; i < this.weights.length; i++)
+        this.lastInputs = inputs;
+        double z = this.weights[0];
+        for (int i = 1; i < this.weights.length; i++)
         {
-            z += inputs[i] * this.weights[i];
+            z += inputs[i - 1] * this.weights[i];
         }
         
-        this.output = 1 / ( 1 + Math.pow(Math.E, (-Neuron.LAMBDA * z) ) );
+        this.lastY = 1 / ( 1 + Math.pow(Math.E, (-Neuron.LAMBDA * z) ) );
         
-        return this.output;
+        return this.lastY;
     }
 
-    public double getOutput() {
-        return output;
+    public double getY() {
+        return this.lastY;
+    }
+    
+    public void propagate(Layer prev, int position)
+    {
+        double common = -lrate * LAMBDA * lastY * (1 - lastY);
+        
+        if (isOutput)
+        {
+            this.lastDelta = lastY - expectedOutput;
+        }
+        else 
+        {
+            this.lastDelta = 0;
+            for (Neuron n: prev)
+            {
+                lastDelta += n.getDelta() * n.getY() * (1 - n.getY()) * LAMBDA *
+                        n.getWeight(position);
+            }
+        }
+        
+        weights[0] += common * lastDelta;
+        for (int i = 1; i < this.weights.length; i++)
+        {
+            weights[i] += common * lastInputs[i - 1] * lastDelta;
+        }
+        
     }
     
 }

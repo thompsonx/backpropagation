@@ -13,22 +13,42 @@ import java.util.ArrayList;
  */
 public class Layer extends ArrayList<Neuron> {
     
-    private double[] outputs;
+    private double[] ys;
+    private boolean isOutput = false;
     
-    public void process(double[] inputs)
+    public void process(double[] inputs, double[] expectedOutputs)
     {
-        this.outputs = new double[this.size()];
+        this.ys = new double[this.size()];
         int i_outputs = 0;
         for (Neuron n : this)
         {
-            n.process(inputs);
-            this.outputs[i_outputs++] = n.getOutput();
+            n.computeY(inputs);
+            if (isOutput) n.setExpectedOutput(expectedOutputs[i_outputs]);
+            this.ys[i_outputs++] = n.getY();
         }
     }
     
-    public double[] getOutputs()
+    public double[] getYs()
     {
-        return this.outputs;
+        return this.ys;
     }
+    
+    public void markAsOutput()
+    {
+        for (Neuron n: this)
+        {
+            n.markAsOutput();
+        }
+    }
+    
+    public void propagate(Layer prev)
+    {
+        int i = 0;
+        for (Neuron n: this)
+        {
+            n.propagate(prev, i++);
+        }
+    }
+            
     
 }
