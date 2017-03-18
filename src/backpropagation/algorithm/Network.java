@@ -42,38 +42,57 @@ public class Network {
     
     public void doBackPropagation()
     {
-        double error = 0;
+        double prev_error = Double.MAX_VALUE;
+        double cur_error = Double.MAX_VALUE;
         
-        for (TrainSetElement tse : this.netdata.getTrainingSet())
+        while (cur_error <= prev_error)
         {
-            // Forward propagation
-            double[] inputs = tse.getInputs();
-            for (Layer l : this.network)
+            prev_error = cur_error;
+            for (TrainSetElement tse : this.netdata.getTrainingSet())
             {
-                l.process(inputs, tse.getOutput());
-                inputs = l.getYs();
+                // Forward propagation
+                double[] inputs = tse.getInputs();
+                for (Layer l : this.network)
+                {
+                    l.process(inputs, tse.getOutput());
+                    inputs = l.getYs();
+                }
+
+                // Backward propagation
+                ListIterator<Layer> iter = this.network.listIterator(network.size());
+                Layer previous = null;
+                while (iter.hasPrevious())
+                {
+                    Layer l = iter.previous();
+                    l.propagate(previous);
+                    previous = l;
+                }
             }
-            double[] outputs = inputs;
-            int index = 0;
-            // All neurons in output layer
-            for (double o : outputs)
+
+            // Global error determination
+            cur_error = 0;
+            for (TrainSetElement tse: this.netdata.getTrainingSet())
             {
-                error += Math.pow(o - tse.getOutput()[index++], 2);
+                // Forward propagation
+                double[] inputs = tse.getInputs();
+                for (Layer l : this.network)
+                {
+                    l.process(inputs, tse.getOutput());
+                    inputs = l.getYs();
+                }
+                double[] outputs = inputs;
+                int index = 0;
+                // All neurons in output layer
+                for (double o : outputs)
+                {
+                    cur_error += Math.pow(o - tse.getOutput()[index++], 2);
+                }
             }
-            
-            // Backward propagation
-            ListIterator<Layer> iter = this.network.listIterator(network.size());
-            Layer previous = null;
-            while (iter.hasPrevious())
-            {
-                Layer l = iter.previous();
-                l.propagate(previous);
-                previous = l;
-            }
+        
+            cur_error *= 0.5;
+            System.out.println(cur_error);
         }
         
-        error *= 0.5;
-        System.out.println(error);
         
     }
     
