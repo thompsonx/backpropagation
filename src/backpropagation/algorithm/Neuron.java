@@ -27,9 +27,9 @@ public class Neuron {
     {
         this.isOutput = false;
         this.lrate = lrate;
-        this.weights = new double[numOfInputs + 1];
+        this.weights = new double[numOfInputs];
         Random generator = new Random();
-        for (int i = 0; i < (numOfInputs + 1); i++)
+        for (int i = 0; i < numOfInputs; i++)
         {
             this.weights[i] = generator.nextDouble();
         }
@@ -58,10 +58,10 @@ public class Neuron {
     public double computeY(double[] inputs)
     {
         this.lastInputs = inputs;
-        double z = this.weights[0];
-        for (int i = 1; i < this.weights.length; i++)
+        double z = 0;
+        for (int i = 0; i < this.weights.length; i++)
         {
-            z += inputs[i - 1] * this.weights[i];
+            z += inputs[i] * this.weights[i];
         }
         
         this.lastY = 1 / ( 1 + Math.pow(Math.E, (-Neuron.LAMBDA * z) ) );
@@ -91,10 +91,9 @@ public class Neuron {
             }
         }
         
-        weights[0] += common * lastDelta;
-        for (int i = 1; i < this.weights.length; i++)
+        for (int i = 0; i < this.weights.length; i++)
         {
-            weights[i] += common * lastInputs[i - 1] * lastDelta;
+            weights[i] += common * lastInputs[i] * lastDelta;
         }
         
     }
