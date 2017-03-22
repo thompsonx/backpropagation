@@ -27,7 +27,7 @@ public class Backpropagation {
             return;
         FileReader fr = new FileReader(args[0]);
         Network net = new Network(BackpropagationNeuronNet.readFromXml(fr));
-        net.doBackPropagation();
+        net.learn();
     }
     
 }

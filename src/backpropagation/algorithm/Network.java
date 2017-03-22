@@ -40,7 +40,7 @@ public class Network {
         this.network.get( this.network.size() - 1 ).markAsOutput();
     }
     
-    public void doBackPropagation()
+    public void learn()
     {
         double prev_error = Double.MAX_VALUE;
         double cur_error = Double.MAX_VALUE;
@@ -54,7 +54,7 @@ public class Network {
                 double[] inputs = tse.getInputs();
                 for (Layer l : this.network)
                 {
-                    l.process(inputs, tse.getOutput());
+                    l.learn(inputs, tse.getOutput());
                     inputs = l.getYs();
                 }
 
@@ -77,7 +77,7 @@ public class Network {
                 double[] inputs = tse.getInputs();
                 for (Layer l : this.network)
                 {
-                    l.process(inputs, tse.getOutput());
+                    l.learn(inputs, tse.getOutput());
                     inputs = l.getYs();
                 }
                 double[] outputs = inputs;
@@ -92,8 +92,18 @@ public class Network {
             cur_error *= 0.5;
             System.out.println(cur_error);
         }
+    }
+    
+    public double[] evaluate(double[] inputs)
+    {
+        double[] l_inputs = inputs;
+        for (Layer l : this.network)
+        {
+            l.evaluate(l_inputs);
+            l_inputs = l.getYs();
+        }
         
-        
+        return l_inputs;
     }
     
     

@@ -16,7 +16,7 @@ public class Layer extends ArrayList<Neuron> {
     private double[] ys;
     private boolean isOutput = false;
     
-    public void process(double[] inputs, double[] expectedOutputs)
+    public void learn(double[] inputs, double[] expectedOutputs)
     {
         this.ys = new double[this.size()];
         int i_outputs = 0;
@@ -24,6 +24,17 @@ public class Layer extends ArrayList<Neuron> {
         {
             n.computeY(inputs);
             if (isOutput) n.setExpectedOutput(expectedOutputs[i_outputs]);
+            this.ys[i_outputs++] = n.getY();
+        }
+    }
+    
+    public void evaluate(double[] inputs)
+    {
+        this.ys = new double[this.size()];
+        int i_outputs = 0;
+        for (Neuron n : this)
+        {
+            n.computeY(inputs);
             this.ys[i_outputs++] = n.getY();
         }
     }
