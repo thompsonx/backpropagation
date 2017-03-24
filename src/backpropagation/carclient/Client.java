@@ -6,9 +6,9 @@
 package backpropagation.carclient;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -17,7 +17,7 @@ import java.util.Random;
 public class Client {
     
     
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, JAXBException
     {
         String host = "localhost";
         int port = 9461;
@@ -46,7 +46,7 @@ public class Client {
                 raceConnector = new RaceConnector(host, port, null);
         }
         // vytvoreni klienta
-        //raceConnector.setDriver();
+        raceConnector.setDriver(new Brain());
         raceConnector.start(raceName, driverName, carType);
     }
 }
