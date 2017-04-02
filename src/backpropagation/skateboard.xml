@@ -22,13 +22,16 @@
     <layersCount>3</layersCount>
     <learningRate>0.5</learningRate>
     <neuronInLayersCount>
-		<neuronInLayerCount>4</neuronInLayerCount>
+        <neuronInLayerCount>4</neuronInLayerCount>
         <neuronInLayerCount>3</neuronInLayerCount>
         <neuronInLayerCount>2</neuronInLayerCount>
     </neuronInLayersCount>
     <outputDescriptions>
-        <outputDescription>SirkaDesky</outputDescription>
-        <outputDescription>SirkaTrucku</outputDescription>
+        <outputDescription>SirkaDesky7.5</outputDescription>
+        <outputDescription>SirkaDesky7.75</outputDescription>
+        <outputDescription>SirkaDesky8.0</outputDescription>
+        <outputDescription>SirkaDesky8.25</outputDescription>
+        <outputDescription>SirkaDesky8.5</outputDescription>
     </outputDescriptions>
     <testSet>
         <testSetElement>
@@ -65,8 +68,11 @@
                 <value>1</value>
             </inputs>
             <outputs>
-                <value>8.25</value>
-                <value>5.25</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -76,8 +82,11 @@
                 <value>1</value>
             </inputs>
             <outputs>
-                <value>7.75</value>
-                <value>5.0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -87,8 +96,11 @@
                 <value>1</value>
             </inputs>
             <outputs>
-                <value>8.0</value>
-                <value>5.25</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -98,8 +110,11 @@
                 <value>1</value>
             </inputs>
             <outputs>
-                <value>7.5</value>
-                <value>5.0</value>
+                <value>1</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -109,8 +124,11 @@
                 <value>1</value>
             </inputs>
             <outputs>
-                <value>8.25</value>
-                <value>5.25</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -120,8 +138,11 @@
                 <value>1</value>
             </inputs>
             <outputs>
-                <value>8.5</value>
-                <value>5.5</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -131,8 +152,11 @@
                 <value>1</value>
             </inputs>
             <outputs>
-                <value>7.875</value>
-                <value>5.0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -142,8 +166,11 @@
                 <value>1</value>
             </inputs>
             <outputs>
-                <value>8.0</value>
-                <value>5.0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -153,8 +180,11 @@
                 <value>0</value>
             </inputs>
             <outputs>
-                <value>8.25</value>
-                <value>5.25</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -164,8 +194,11 @@
                 <value>0</value>
             </inputs>
             <outputs>
-                <value>8.5</value>
-                <value>5.5</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -175,8 +208,11 @@
                 <value>0</value>
             </inputs>
             <outputs>
-                <value>8.125</value>
-                <value>5.25</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -186,8 +222,11 @@
                 <value>0</value>
             </inputs>
             <outputs>
-                <value>8.25</value>
-                <value>5.25</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -197,8 +236,11 @@
                 <value>0</value>
             </inputs>
             <outputs>
-                <value>7.875</value>
-                <value>5.0</value>
+                <value>0</value>
+                <value>1</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
@@ -208,8 +250,11 @@
                 <value>0</value>
             </inputs>
             <outputs>
-                <value>8.5</value>
-                <value>5.5</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>0</value>
+                <value>1</value>
             </outputs>
         </trainSetElement>
     </trainSet>
