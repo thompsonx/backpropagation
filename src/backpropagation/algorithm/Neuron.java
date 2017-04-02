@@ -14,24 +14,29 @@ import java.util.Random;
 public class Neuron {
     
     private double[] weights;
+    private double[] prevWeightChanges;
     private double lastY;
     private double lastDelta;
     private double[] lastInputs;
     private boolean isOutput;
     private double lrate;
     private double expectedOutput;
+    private double influenceRate;
     
     public static double LAMBDA = 0.7;
     
-    public Neuron(int numOfInputs, double lrate)
+    public Neuron(int numOfInputs, double lrate, double influenceRate)
     {
         this.isOutput = false;
         this.lrate = lrate;
+        this.influenceRate = influenceRate;
         this.weights = new double[numOfInputs];
+        this.prevWeightChanges = new double[numOfInputs];
         Random generator = new Random();
         for (int i = 0; i < numOfInputs; i++)
         {
             this.weights[i] = generator.nextDouble();
+            this.prevWeightChanges[i] = 0;
         }
     }
 
@@ -93,7 +98,11 @@ public class Neuron {
         
         for (int i = 0; i < this.weights.length; i++)
         {
-            weights[i] += common * lastInputs[i] * lastDelta;
+            double change = common * lastInputs[i] * lastDelta 
+                    + influenceRate * prevWeightChanges[i];
+            weights[i] += change;
+            prevWeightChanges[i] = change;
+            
         }
         
     }

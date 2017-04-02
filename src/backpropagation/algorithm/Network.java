@@ -19,6 +19,7 @@ public class Network {
 
     private BackpropagationNeuronNet netdata;
     private List<Layer> network;
+    private double error;
 
     public Network(BackpropagationNeuronNet netdata) {
         this.netdata = netdata;
@@ -34,10 +35,15 @@ public class Network {
             Layer l = new Layer();
             for (int i = 0; i < netdata.getNeuronInLayersCount()[i_input]; i++)
                 l.add(new Neuron(inputsPerLayer[i_input], 
-                        netdata.getLearningRate()));
+                        netdata.getLearningRate(),
+                        netdata.getLastStepInfluenceLearningRate()));
             this.network.add(l);
         }
         this.network.get( this.network.size() - 1 ).markAsOutput();
+    }
+
+    public double getError() {
+        return error;
     }
     
     public void learn()
@@ -90,8 +96,9 @@ public class Network {
             }
         
             cur_error *= 0.5;
-            System.out.println(cur_error);
         }
+        
+        this.error = cur_error;
     }
     
     public double[] evaluate(double[] inputs)
@@ -105,6 +112,5 @@ public class Network {
         
         return l_inputs;
     }
-    
     
 }
