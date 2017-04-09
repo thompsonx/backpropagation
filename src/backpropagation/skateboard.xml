@@ -2,62 +2,50 @@
 <backpropagationNeuronNet>
     <inputDescriptions>
         <inputDescription>
-            <maximum>100</maximum>
-            <minimum>250</minimum>
+            <maximum>250</maximum>
+            <minimum>100</minimum>
             <name>Vyska</name>
         </inputDescription>
         <inputDescription>
-            <maximum>25.0</maximum>
-            <minimum>50.0</minimum>
+            <maximum>50</maximum>
+            <minimum>25</minimum>
             <name>VelikostNohy</name>
         </inputDescription>
-        <inputDescription>
-            <maximum>0</maximum>
-            <minimum>1</minimum>
-            <name>StreetVert</name>
-        </inputDescription>
     </inputDescriptions>
-    <inputsCount>3</inputsCount>
-    <lastStepInfluenceLearningRate>0.5</lastStepInfluenceLearningRate>
+    <inputsCount>2</inputsCount>
+    <lastStepInfluenceLearningRate>0.1</lastStepInfluenceLearningRate>
     <layersCount>3</layersCount>
-    <learningRate>0.5</learningRate>
+    <learningRate>0.1</learningRate>
     <neuronInLayersCount>
+        <neuronInLayerCount>5</neuronInLayerCount>
         <neuronInLayerCount>4</neuronInLayerCount>
         <neuronInLayerCount>3</neuronInLayerCount>
-        <neuronInLayerCount>2</neuronInLayerCount>
     </neuronInLayersCount>
     <outputDescriptions>
         <outputDescription>SirkaDesky7.5</outputDescription>
-        <outputDescription>SirkaDesky7.75</outputDescription>
         <outputDescription>SirkaDesky8.0</outputDescription>
-        <outputDescription>SirkaDesky8.25</outputDescription>
         <outputDescription>SirkaDesky8.5</outputDescription>
     </outputDescriptions>
     <testSet>
         <testSetElement>
             <input>183</input>
             <input>44</input>
-            <input>0</input>
         </testSetElement>
         <testSetElement>
             <input>161</input>
             <input>44</input>
-            <input>1</input>
         </testSetElement>
         <testSetElement>
             <input>186</input>
             <input>43</input>
-            <input>1</input>
         </testSetElement>
         <testSetElement>
             <input>174</input>
             <input>46</input>
-            <input>0</input>
         </testSetElement>
         <testSetElement>
             <input>196</input>
             <input>47</input>
-            <input>1</input>
         </testSetElement>
     </testSet>
     <trainSet>
@@ -65,11 +53,8 @@
             <inputs>
                 <value>185</value>
                 <value>45</value>
-                <value>1</value>
             </inputs>
             <outputs>
-                <value>0</value>
-                <value>0</value>
                 <value>0</value>
                 <value>1</value>
                 <value>0</value>
@@ -77,84 +62,22 @@
         </trainSetElement>
         <trainSetElement>
             <inputs>
-                <value>170</value>
-                <value>42</value>
-                <value>1</value>
-            </inputs>
-            <outputs>
-                <value>0</value>
-                <value>1</value>
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-            </outputs>
-        </trainSetElement>
-        <trainSetElement>
-            <inputs>
-                <value>180</value>
+                <value>179</value>
                 <value>43</value>
-                <value>1</value>
-            </inputs>
-            <outputs>
-                <value>0</value>
-                <value>0</value>
-                <value>1</value>
-                <value>0</value>
-                <value>0</value>
-            </outputs>
-        </trainSetElement>
-        <trainSetElement>
-            <inputs>
-                <value>161</value>
-                <value>41</value>
-                <value>1</value>
             </inputs>
             <outputs>
                 <value>1</value>
                 <value>0</value>
                 <value>0</value>
-                <value>0</value>
-                <value>0</value>
-            </outputs>
-        </trainSetElement>
-        <trainSetElement>
-            <inputs>
-                <value>190</value>
-                <value>46</value>
-                <value>1</value>
-            </inputs>
-            <outputs>
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-                <value>1</value>
-                <value>0</value>
-            </outputs>
-        </trainSetElement>
-        <trainSetElement>
-            <inputs>
-                <value>189</value>
-                <value>45</value>
-                <value>1</value>
-            </inputs>
-            <outputs>
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-                <value>1</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
             <inputs>
                 <value>171</value>
                 <value>42.5</value>
-                <value>1</value>
             </inputs>
             <outputs>
-                <value>0</value>
                 <value>1</value>
-                <value>0</value>
                 <value>0</value>
                 <value>0</value>
             </outputs>
@@ -163,25 +86,8 @@
             <inputs>
                 <value>179</value>
                 <value>45</value>
-                <value>1</value>
             </inputs>
             <outputs>
-                <value>0</value>
-                <value>0</value>
-                <value>1</value>
-                <value>0</value>
-                <value>0</value>
-            </outputs>
-        </trainSetElement>
-        <trainSetElement>
-            <inputs>
-                <value>180</value>
-                <value>43</value>
-                <value>0</value>
-            </inputs>
-            <outputs>
-                <value>0</value>
-                <value>0</value>
                 <value>0</value>
                 <value>1</value>
                 <value>0</value>
@@ -191,67 +97,19 @@
             <inputs>
                 <value>190</value>
                 <value>46.5</value>
-                <value>0</value>
-            </inputs>
-            <outputs>
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-                <value>1</value>
-            </outputs>
-        </trainSetElement>
-        <trainSetElement>
-            <inputs>
-                <value>165</value>
-                <value>41</value>
-                <value>0</value>
             </inputs>
             <outputs>
                 <value>0</value>
                 <value>0</value>
                 <value>1</value>
-                <value>0</value>
-                <value>0</value>
-            </outputs>
-        </trainSetElement>
-        <trainSetElement>
-            <inputs>
-                <value>173</value>
-                <value>44.5</value>
-                <value>0</value>
-            </inputs>
-            <outputs>
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
-                <value>1</value>
-                <value>0</value>
-            </outputs>
-        </trainSetElement>
-        <trainSetElement>
-            <inputs>
-                <value>154</value>
-                <value>42.5</value>
-                <value>0</value>
-            </inputs>
-            <outputs>
-                <value>0</value>
-                <value>1</value>
-                <value>0</value>
-                <value>0</value>
-                <value>0</value>
             </outputs>
         </trainSetElement>
         <trainSetElement>
             <inputs>
                 <value>172</value>
                 <value>46</value>
-                <value>0</value>
             </inputs>
             <outputs>
-                <value>0</value>
-                <value>0</value>
                 <value>0</value>
                 <value>0</value>
                 <value>1</value>

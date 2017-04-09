@@ -147,8 +147,8 @@
     <layersCount>3</layersCount>
     <learningRate>0.1</learningRate>
     <neuronInLayersCount>
+        <neuronInLayerCount>8</neuronInLayerCount>
         <neuronInLayerCount>4</neuronInLayerCount>
-        <neuronInLayerCount>3</neuronInLayerCount>
         <neuronInLayerCount>2</neuronInLayerCount>
     </neuronInLayersCount>
     <outputDescriptions>
@@ -158,16 +158,16 @@
     <trainSet>
         <trainSetElement>
             <inputs>
-                <value>0.0</value>
-                <value>0.0</value>
-                <value>0.0</value>
-                <value>0.0</value>
-                <value>0.0</value>
-                <value>0.0</value>
-                <value>0.0</value>
-                <value>0.0</value>
-                <value>0.0</value>
-                <value>0.0</value>
+                <value>0.75</value>
+                <value>1.0</value>
+                <value>0.5</value>
+                <value>0.5</value>
+                <value>0.5</value>
+                <value>0.5</value>
+                <value>0.5</value>
+                <value>1.0</value>
+                <value>1.0</value>
+                <value>0.75</value>
                 <value>0.0</value>
                 <value>0.0</value>
                 <value>0.0</value>
@@ -189,7 +189,7 @@
             </inputs>
             <outputs>
                 <value>0.5</value>
-                <value>0.5</value>
+                <value>0.8</value>
             </outputs>
         </trainSetElement>
     </trainSet>

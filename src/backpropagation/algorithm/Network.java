@@ -8,8 +8,10 @@ package backpropagation.algorithm;
 import backpropagation.data.BackpropagationNeuronNet;
 import backpropagation.data.TrainSetElement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 
 /**
  *
@@ -41,6 +43,17 @@ public class Network {
         }
         this.network.get( this.network.size() - 1 ).markAsOutput();
     }
+    
+    public Network(Network n)
+    {
+        this.netdata = n.netdata;
+        this.network = new ArrayList<>();
+        for (Layer l : n.network)
+        {
+            this.network.add(new Layer(l));
+        }
+        this.error = n.error;
+    }
 
     public double getError() {
         return error;
@@ -48,57 +61,45 @@ public class Network {
     
     public void learn()
     {
-        double prev_error = Double.MAX_VALUE;
-        double cur_error = Double.MAX_VALUE;
-        
-        while (cur_error <= prev_error)
+        ArrayList<TrainSetElement> trainSet = this.netdata.getTrainingSet();
+        Collections.shuffle(trainSet, new Random());
+        for (TrainSetElement tse : trainSet)
         {
-            prev_error = cur_error;
-            for (TrainSetElement tse : this.netdata.getTrainingSet())
+            // Forward propagation
+            double[] inputs = tse.getInputs();
+            for (Layer l : this.network)
             {
-                // Forward propagation
-                double[] inputs = tse.getInputs();
-                for (Layer l : this.network)
-                {
-                    l.learn(inputs, tse.getOutput());
-                    inputs = l.getYs();
-                }
-
-                // Backward propagation
-                ListIterator<Layer> iter = this.network.listIterator(network.size());
-                Layer previous = null;
-                while (iter.hasPrevious())
-                {
-                    Layer l = iter.previous();
-                    l.propagate(previous);
-                    previous = l;
-                }
+                l.learn(inputs, tse.getOutput());
+                inputs = l.getYs();
             }
 
-            // Global error determination
-            cur_error = 0;
-            for (TrainSetElement tse: this.netdata.getTrainingSet())
+            // Backward propagation
+            ListIterator<Layer> iter = this.network.listIterator(network.size());
+            Layer previous = null;
+            while (iter.hasPrevious())
             {
-                // Forward propagation
-                double[] inputs = tse.getInputs();
-                for (Layer l : this.network)
-                {
-                    l.learn(inputs, tse.getOutput());
-                    inputs = l.getYs();
-                }
-                double[] outputs = inputs;
-                int index = 0;
-                // All neurons in output layer
-                for (double o : outputs)
-                {
-                    cur_error += Math.pow(o - tse.getOutput()[index++], 2);
-                }
+                Layer l = iter.previous();
+                l.propagate(previous);
+                previous = l;
             }
-        
-            cur_error *= 0.5;
         }
-        
-        this.error = cur_error;
+
+        // Global error determination
+        double err = 0;
+        for (TrainSetElement tse: trainSet)
+        {
+            double[] inputs = tse.getInputs();
+            double[] outputs = this.evaluate(inputs);
+            int index = 0;
+            // All neurons in output layer
+            for (double o : outputs)
+            {
+                err += Math.pow(o - tse.getOutput()[index++], 2);
+            }
+        }
+
+        err *= 0.5;
+        this.error = err;
     }
     
     public double[] evaluate(double[] inputs)
