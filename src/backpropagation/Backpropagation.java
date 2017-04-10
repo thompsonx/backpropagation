@@ -32,47 +32,50 @@ public class Backpropagation {
         FileReader fr = new FileReader(args[0]);
         BackpropagationNeuronNet data = BackpropagationNeuronNet.readFromXml(fr);
         
-        for (int i = 0; i < 5; i++)
+        Network2 net = new Network2(data);
+        net.learn();
+        for (int e = 0; e < 10000; e++)
         {
-            
-            Network2 net = new Network2(data);
             net.learn();
-            for (int e = 0; e < 5000; e++)
-            {
-                net.learn();
-            }
-            System.out.println("Error" + net.getNetError());
-            List<Double> input = new ArrayList<>();
-            input.add(185.0);
-            input.add(45.0);
-
-            List<Double> output = net.evaluate(input);
-
-            for (double d : output)
-            {
-                System.out.println(d);
-            }
         }
         
-        //System.out.println("Error: " + Double.toString(net.getNetError()));
+        System.out.println("Error: " + Double.toString(net.getNetError()));
         
+//  LEKAR
 //        List<Double> input = new ArrayList<>();
 //        input.add(42.0);
 //        input.add(100.0);
 //        input.add(50.0);
 //        input.add(50.0);
 //        input.add(50.0);
-        
-//        List<Double> input = new ArrayList<>();
-//        input.add(170.0);
-//        input.add(40.0);
-//
 //        List<Double> output = net.evaluate(input);
-//                        
 //        for (double d : output)
 //        {
 //            System.out.println(d);
 //        }
+        
+        List<Double> input = new ArrayList<>();
+        input.add(0.0); // rychlost
+        input.add(1.0); // spotreba
+        input.add(0.0); // prostor
+        input.add(0.5); // bezpecnost
+
+        List<Double> output = net.evaluate(input);
+        int i = 1;
+        int max_i = 1;
+        double max = -1;
+        for (double d : output)
+        {
+            System.out.println(d);
+            if (d > max)
+            {
+                max = d;
+                max_i = i;
+            }
+            i++;
+        }
+        System.out.println("CHOICE: " + max_i + " (" + max + ")");
+        System.out.println("1 - SUV, 2 - FAMILY, 3 - SPORT");
     }
     
 }
