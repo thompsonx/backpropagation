@@ -34,10 +34,10 @@ public class Brain implements DriverInterface {
     
     public Brain() throws JAXBException, FileNotFoundException
     {
-        FileReader fr = new FileReader("brain.xml");
+        FileReader fr = new FileReader("brain_obstacles.xml");
         BackpropagationNeuronNet data = BackpropagationNeuronNet.readFromXml(fr);       
         this.net = new Network2(data);
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 10000; i++)
         {
             this.net.learn();
         }

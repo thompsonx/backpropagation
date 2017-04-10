@@ -41,40 +41,42 @@ public class Backpropagation {
         System.out.println("Error: " + Double.toString(net.getNetError()));
         
 //  LEKAR
-//        List<Double> input = new ArrayList<>();
-//        input.add(42.0);
-//        input.add(100.0);
-//        input.add(50.0);
-//        input.add(50.0);
-//        input.add(50.0);
-//        List<Double> output = net.evaluate(input);
-//        for (double d : output)
-//        {
-//            System.out.println(d);
-//        }
-        
         List<Double> input = new ArrayList<>();
-        input.add(0.0); // rychlost
-        input.add(1.0); // spotreba
-        input.add(0.0); // prostor
-        input.add(0.5); // bezpecnost
-
+        input.add(42.0);
+        input.add(100.0);
+        input.add(50.0);
+        input.add(50.0);
+        input.add(50.0);
         List<Double> output = net.evaluate(input);
-        int i = 1;
-        int max_i = 1;
-        double max = -1;
         for (double d : output)
         {
             System.out.println(d);
-            if (d > max)
-            {
-                max = d;
-                max_i = i;
-            }
-            i++;
         }
-        System.out.println("CHOICE: " + max_i + " (" + max + ")");
-        System.out.println("1 - SUV, 2 - FAMILY, 3 - SPORT");
+        
+
+//  AUTO KONFIGURATOR
+//        List<Double> input = new ArrayList<>();
+//        input.add(0.0); // rychlost
+//        input.add(1.0); // spotreba
+//        input.add(0.0); // prostor
+//        input.add(0.5); // bezpecnost
+//
+//        List<Double> output = net.evaluate(input);
+//        int i = 1;
+//        int max_i = 1;
+//        double max = -1;
+//        for (double d : output)
+//        {
+//            System.out.println(d);
+//            if (d > max)
+//            {
+//                max = d;
+//                max_i = i;
+//            }
+//            i++;
+//        }
+//        System.out.println("CHOICE: " + max_i + " (" + max + ")");
+//        System.out.println("1 - SUV, 2 - FAMILY, 3 - SPORT");
     }
     
 }
