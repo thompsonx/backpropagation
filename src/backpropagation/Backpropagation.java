@@ -5,7 +5,6 @@
  */
 package backpropagation;
 
-import backpropagation.algorithm.Network;
 import backpropagation.algorithm2.Network2;
 import backpropagation.data.BackpropagationNeuronNet;
 import java.io.FileNotFoundException;

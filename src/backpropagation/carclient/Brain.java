@@ -5,7 +5,6 @@
  */
 package backpropagation.carclient;
 
-import backpropagation.algorithm.Network;
 import backpropagation.algorithm2.Network2;
 import backpropagation.data.BackpropagationNeuronNet;
 import java.io.FileNotFoundException;
@@ -35,7 +34,7 @@ public class Brain implements DriverInterface {
     
     public Brain() throws JAXBException, FileNotFoundException
     {
-        FileReader fr = new FileReader("brain1.xml");
+        FileReader fr = new FileReader("brain.xml");
         BackpropagationNeuronNet data = BackpropagationNeuronNet.readFromXml(fr);       
         this.net = new Network2(data);
         for (int i = 0; i < 1000; i++)
